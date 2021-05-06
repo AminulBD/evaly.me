@@ -34,7 +34,7 @@
                       to="/profile"
                       :class="[
                         active ? 'bg-red-700 text-white' : 'text-gray-900',
-                        'transition-all ease-in-out duration-200 group flex rounded-md items-center w-full px-4 py-2 text-sm focus:outline-none',
+                        'block transition-all ease-in-out duration-200 group flex rounded-md items-center w-full px-4 py-2 text-sm focus:outline-none',
                       ]"
                     >
                       Profile
@@ -46,7 +46,7 @@
                       :to="{name: 'Orders'}"
                       :class="[
                         active ? 'bg-red-700 text-white' : 'text-gray-900',
-                        'transition-all ease-in-out duration-200 group flex rounded-md items-center w-full px-4 py-2 text-sm focus:outline-none',
+                        'block transition-all ease-in-out duration-200 group flex rounded-md items-center w-full px-4 py-2 text-sm focus:outline-none',
                       ]"
                     >
                       Orders
@@ -59,7 +59,7 @@
                     <button
                       :class="[
                         active ? 'bg-red-700 text-white' : 'text-gray-900',
-                        'transition-all ease-in-out duration-200 group flex rounded-md items-center w-full px-4 py-2 text-sm focus:outline-none',
+                        'block transition-all ease-in-out duration-200 group flex rounded-md items-center w-full px-4 py-2 text-sm focus:outline-none',
                       ]"
                       v-on:click="handleLogout"
                     >
