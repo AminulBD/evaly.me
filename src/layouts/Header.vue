@@ -13,7 +13,7 @@
             <router-link :to="{name: 'Login'}" class="inline-block transition-all text-sm text-white py-1 px-3 bg-red-700 rounded-full">Login</router-link>
           </li>
 
-          <Menu v-else as="li" class="relative inline-block">
+          <Menu v-else as="li" class="relative inline-block z-50">
             <MenuButton class="inline-flex justify-center w-full px-3 py-1 text-sm text-white bg-red-700 rounded-full focus:outline-none">
               Welcome, {{ profile.first_name }}
               <ChevronDownIcon class="w-5 h-5 ml-2 -mr-1" aria-hidden="true"/>
@@ -34,7 +34,7 @@
                       to="/profile"
                       :class="[
                         active ? 'bg-red-700 text-white' : 'text-gray-900',
-                        'block transition-all ease-in-out duration-200 group flex rounded-md items-center w-full px-4 py-2 text-sm focus:outline-none',
+                        'block transition-all ease-in-out duration-200 rounded-md px-4 py-2 text-sm',
                       ]"
                     >
                       Profile
@@ -46,7 +46,7 @@
                       :to="{name: 'Orders'}"
                       :class="[
                         active ? 'bg-red-700 text-white' : 'text-gray-900',
-                        'block transition-all ease-in-out duration-200 group flex rounded-md items-center w-full px-4 py-2 text-sm focus:outline-none',
+                        'block transition-all ease-in-out duration-200 rounded-md px-4 py-2 text-sm',
                       ]"
                     >
                       Orders
@@ -59,7 +59,7 @@
                     <button
                       :class="[
                         active ? 'bg-red-700 text-white' : 'text-gray-900',
-                        'block transition-all ease-in-out duration-200 group flex rounded-md items-center w-full px-4 py-2 text-sm focus:outline-none',
+                        'block w-full text-left transition-all ease-in-out duration-200 rounded-md px-4 py-2 text-sm',
                       ]"
                       v-on:click="handleLogout"
                     >
