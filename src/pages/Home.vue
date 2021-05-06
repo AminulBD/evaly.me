@@ -1,0 +1,21 @@
+<template>
+  <div class="bg-gray-100 py-2 min-h-screen">
+    <div class="container mx-auto">
+      <div class="w-96 bg-white border-l-4 border-t-4 border-green-600 p-10 mx-auto">
+        Hi folks, I'm trying to build a freaking app to track my Workdays (AKA: Kormodibosh). I build this app because I'm jobless now and have enough time to learn something new.
+      </div>
+
+      <div class="w-96 bg-white border-l-4 mt-10 border-t-4 border-red-500 p-10 mx-auto">
+        Note: When you are login using your evaly username and password, All information will be stored in your browser and all safe as your computer. You can see the source linked in the footer.
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  data () {
+    return {}
+  }
+}
+</script>
