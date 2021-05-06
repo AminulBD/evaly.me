@@ -32,7 +32,7 @@
       </div>
 
       <p class="text-xs text-gray-500 mt-2">
-        <strong>Note:</strong> Evaly.me will not store your any data. All information will be stored in your browser. If you can't trust me, don't use it.
+        <strong>Note:</strong> Evaly.me will not store any data you inputted here. All information will be stored in your browser. If you can't trust me, don't use it.
       </p>
     </div>
   </div>
