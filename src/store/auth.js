@@ -69,6 +69,14 @@ const actions = {
   },
 
   logout ({ commit }) {
+    localStorage.removeItem('ACCESS_TOKEN')
+    localStorage.removeItem('REFRESH_TOKEN')
+    localStorage.removeItem('USER_PROFILE')
+
+    commit('LOGOUT_USER')
+
+    // TODO: Fix me :D
+
     return evaly.post('/eauth/api/v1/auth/logout')
       .then(() => {
         localStorage.removeItem('ACCESS_TOKEN')

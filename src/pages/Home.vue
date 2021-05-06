@@ -1,7 +1,11 @@
 <template>
   <div class="bg-gray-100 py-2 min-h-screen">
     <div class="container mx-auto">
-      <div class="w-96 bg-white border-l-4 border-t-4 border-green-600 p-10 mx-auto">
+      <div class="w-96 bg-white border-l-4 border-t-4 border-blue-600 p-10 mx-auto">
+        Hello {{ profile.first_name }}, View your orders <router-link class="border-b-2 border-red-700" :to="{name: 'Orders'}">here</router-link>.
+      </div>
+
+      <div class="w-96 bg-white border-l-4 mt-10 border-t-4 border-green-600 p-10 mx-auto">
         Hi folks, I'm trying to build a freaking app to track my Workdays (AKA: Kormodibosh). I build this app because I'm jobless now and have enough time to learn something new.
       </div>
 
@@ -13,9 +17,15 @@
 </template>
 
 <script>
+import { createNamespacedHelpers } from 'vuex'
+const Auth = createNamespacedHelpers('auth')
+
 export default {
-  data () {
-    return {}
+  computed: {
+    ...Auth.mapGetters({
+      isAuthenticated: 'isAuthenticated',
+      profile: 'profile'
+    })
   }
 }
 </script>

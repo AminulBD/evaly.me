@@ -114,8 +114,15 @@ const Auth = createNamespacedHelpers('auth')
 export default {
   computed: {
     ...Auth.mapGetters({
-      profile: 'profile'
+      profile: 'profile',
+      isAuthenticated: 'isAuthenticated'
     })
+  },
+
+  mounted () {
+    if (!this.isAuthenticated) {
+      this.$router.push({ name: 'Login' })
+    }
   }
 }
 </script>

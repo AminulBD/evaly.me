@@ -86,7 +86,9 @@
 </template>
 
 <script>
+import { createNamespacedHelpers } from 'vuex'
 import evaly from '@/api/evaly'
+const Auth = createNamespacedHelpers('auth')
 
 export default {
   data () {
@@ -97,8 +99,18 @@ export default {
     }
   },
 
+  computed: {
+    ...Auth.mapGetters({
+      isAuthenticated: 'isAuthenticated'
+    })
+  },
+
   mounted () {
-    this.fetchOrders(this.currentPage)
+    if (!this.isAuthenticated) {
+      this.$router.push({ name: 'Login' })
+    } else {
+      this.fetchOrders(this.currentPage)
+    }
   },
 
   methods: {
@@ -121,8 +133,8 @@ export default {
         if (data.next && data.next.length > 10) {
           this.fetchOrders(this.currentPage)
         }
-      }).catch(err => {
-        console.log(err.response)
+      }).catch(() => {
+        alert('Unable get orders data. Maybe your session is expired. Try again by logout and then login.')
       })
     },
 

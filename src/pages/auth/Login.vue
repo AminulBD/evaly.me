@@ -65,7 +65,7 @@ export default {
         username: this.username,
         password: this.password
       }).then(() => {
-        this.$router.push({ name: 'Profile' })
+        this.$router.push({ name: 'Orders' })
       }).catch(error => {
         this.error = error.response?.data?.message
       })
