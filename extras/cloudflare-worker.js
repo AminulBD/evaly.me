@@ -1,5 +1,4 @@
-
-async function gatherResponse(response) {
+async function gatherResponse (response) {
   const { headers } = response
   const contentType = headers.get('Content-Type') || ''
 
@@ -30,7 +29,7 @@ addEventListener('fetch', event => {
   return event.respondWith(handleRequest(evalyRequest))
 })
 
-async function handleRequest(request) {
+async function handleRequest (request) {
   const response = await fetch(request)
   const results = await gatherResponse(response)
   const { headers } = response
