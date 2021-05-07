@@ -7,10 +7,13 @@
 </template>
 
 <script>
+import { createNamespacedHelpers } from 'vuex'
 import Header from '@/layouts/Header.vue'
 import Content from '@/layouts/Content.vue'
 import Footer from '@/layouts/Footer.vue'
 import DefaultView from '@/layouts/DefaultView.vue'
+
+const Auth = createNamespacedHelpers('auth')
 
 export default {
   components: {
@@ -20,6 +23,30 @@ export default {
     return {
 
     }
+  },
+
+  computed: {
+    ...Auth.mapGetters({
+      refreshToken: 'refreshToken',
+      tokenValidity: 'tokenValidity'
+    })
+  },
+
+  mounted () {
+    setInterval(() => {
+      const currentTime = (new Date()).getTime()
+      const tokenValidity = parseInt(this.tokenValidity)
+
+      if (currentTime > tokenValidity) {
+        this.refreshSession(this.refreshToken)
+      }
+    }, 5000)
+  },
+
+  methods: {
+    ...Auth.mapActions({
+      refreshSession: 'refreshToken'
+    })
   }
 }
 </script>

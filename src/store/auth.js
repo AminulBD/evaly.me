@@ -9,12 +9,14 @@ const guestUser = {
 const initalState = () => {
   const accessToken = localStorage.ACCESS_TOKEN
   const refreshToken = localStorage.REFRESH_TOKEN
+  const tokenValidity = localStorage.TOKEN_VALIDITY
   const profile = localStorage.USER_PROFILE
 
   return {
     profile: profile && profile.length > 3 ? JSON.parse(profile) : guestUser,
     accessToken: accessToken || null,
     refreshToken: refreshToken || null,
+    tokenValidity: tokenValidity || null,
     isAuthenticated: accessToken && accessToken.length > 4
   }
 }
@@ -24,6 +26,7 @@ const mutations = {
   LOGIN_USER: (state, val) => {
     state.accessToken = val.accessToken
     state.refreshToken = val.refreshToken
+    state.tokenValidity = val.tokenValidity
     state.isAuthenticated = val.accessToken && val.accessToken.length > 4
   },
 
@@ -43,12 +46,37 @@ const actions = {
   login ({ dispatch, commit }, credential) {
     return evaly.post('/eauth/api/v1/auth/login', credential)
       .then(({ data }) => {
+        const tokenValidity = (new Date()).getTime() + (2000 * 1000)
+
         localStorage.ACCESS_TOKEN = data.data.access_token
         localStorage.REFRESH_TOKEN = data.data.refresh_token
+        localStorage.TOKEN_VALIDITY = tokenValidity
 
         commit('LOGIN_USER', {
           accessToken: data.data.access_token,
-          refreshToken: data.data.refresh_token
+          refreshToken: data.data.refresh_token,
+          tokenValidity: tokenValidity
+        })
+
+        dispatch('fetchProfile', data.data.access_token)
+      })
+  },
+
+  refreshToken ({ dispatch, commit }, refreshToken = null) {
+    refreshToken = refreshToken !== null ? refreshToken : localStorage.REFRESH_TOKEN
+
+    return evaly.post('/eauth/api/v1/auth/token/refresh', { refresh_token: refreshToken })
+      .then(({ data }) => {
+        const tokenValidity = (new Date()).getTime() + (2000 * 1000)
+
+        localStorage.ACCESS_TOKEN = data.data.access_token
+        localStorage.REFRESH_TOKEN = data.data.refresh_token
+        localStorage.TOKEN_VALIDITY = tokenValidity
+
+        commit('LOGIN_USER', {
+          accessToken: data.data.access_token,
+          refreshToken: data.data.refresh_token,
+          tokenValidity: tokenValidity
         })
 
         dispatch('fetchProfile', data.data.access_token)
@@ -72,6 +100,7 @@ const actions = {
     localStorage.removeItem('ACCESS_TOKEN')
     localStorage.removeItem('REFRESH_TOKEN')
     localStorage.removeItem('USER_PROFILE')
+    localStorage.removeItem('TOKEN_VALIDITY')
 
     commit('LOGOUT_USER')
 
@@ -82,6 +111,7 @@ const actions = {
         localStorage.removeItem('ACCESS_TOKEN')
         localStorage.removeItem('REFRESH_TOKEN')
         localStorage.removeItem('USER_PROFILE')
+        localStorage.removeItem('TOKEN_VALIDITY')
 
         commit('LOGOUT_USER')
       })
@@ -92,7 +122,8 @@ const getters = {
   profile: (state) => state.profile,
   isAuthenticated: (state) => state.isAuthenticated,
   accessToken: (state) => state.accessToken,
-  refreshToken: (state) => state.refreshToken
+  refreshToken: (state) => state.refreshToken,
+  tokenValidity: (state) => state.tokenValidity
 }
 
 export default {
