@@ -1,0 +1,80 @@
+{
+    "common": {
+        "02": {
+            "21": "Language Martyrs' Day"
+        },
+        "03": {
+            "17": "Sheikh Mujibur Rahman's Birthday",
+            "26": "Independence Day"
+        },
+        "04": {
+            "14": "Bengali New Year"
+        },
+        "05": {
+            "01": "Labour Day"
+        },
+        "08": {
+            "15": "National Mourning Day"
+        },
+        "12": {
+            "16": "Victory Day",
+            "25": "Christmas Day"
+        }
+    },
+    "years": {
+        "2018": {},
+        "2019": {},
+        "2020": {
+            "04": {
+                "09": "Shab e-Barat"
+            },
+            "05": {
+                "07": "Buddha Purnima",
+                "20": "Laylat al-Qadr",
+                "22": "Jumatul Bidah",
+                "24": "Eid ul-Fitr Holiday",
+                "25": "Eid ul-Fitr",
+                "26": "Eid ul-Fitr Holiday"
+            },
+            "07": {
+                "31": "Eid ul-Adha Holiday"
+            },
+            "08": {
+                "01": "Eid ul-Adha",
+                "02": "Eid ul-Adha Holiday",
+                "11": "Shuba Janmashtami",
+                "29": "Ashura"
+            },
+            "10": {
+                "26": "Vijaya Dashami",
+                "30": "Eid-e-Milad un-Nabi"
+            }
+        },
+        "2021": {
+            "03": {
+                "29": "Shab e-Barat"
+            },
+            "05": {
+                "07": "Jumatul Bidah",
+                "10": "Laylat al-Qadr",
+                "13": "Eid ul-Fitr Holiday",
+                "14": "Eid ul-Fitr",
+                "15": "Eid ul-Fitr Holiday",
+                "26": "Buddha Purnima"
+            },
+            "07": {
+                "20": "Eid ul-Adha Holiday",
+                "21": "Eid ul-Adha",
+                "22": "Eid ul-Adha Holiday"
+            },
+            "08": {
+                "19": "Ashura",
+                "30": "Shuba Janmashtami"
+            },
+            "10": {
+                "15": "Vijaya Dashami",
+                "19": "Eid-e-Milad un-Nabi"
+            }
+        }
+    }
+}
