@@ -39,13 +39,33 @@ app.mixin({
       const startDateUnix = startDate.unix()
       const endDateUnix = endDate.unix()
       const actualDays = startDate.diff(endDate, 'day')
+
       const holidays = Object.keys(this.holidays()).filter(key => {
         const intKey = parseInt(key)
 
         return intKey >= startDateUnix && intKey <= endDateUnix
       })
+
+      const weekends = () => {
+        let result = []
+        let current = startDate
+
+        while(current.isBefore(endDate, 'day')) {
+          if (current.day() < 5) {
+            current = current.add(5 - current.day(), 'day')
+          } else if (current.day() === 5) {
+            result.push(current.format('DD/MM/YYYY hh:mm A'))
+            current = current.add(1, 'day')
+          } else if (current.day() === 6) {
+            result.push(current.format('DD/MM/YYYY hh:mm A'))
+            current = current.add(7, 'day')
+          }
+        }
+        return result
+      }
+
       
-      return Math.abs(actualDays) - holidays.length
+      return Math.abs(actualDays) - (holidays.length + weekends().length)
     }
   }
 })
